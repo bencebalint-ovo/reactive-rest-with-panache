@@ -17,14 +17,18 @@ dependencies {
     val kotestVersion = "5.6.2"
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
 
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-kotlin")
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-config-yaml")
+    testImplementation("io.quarkus:quarkus-junit5")
+    testImplementation("io.quarkus:quarkus-test-vertx")
 
     implementation("io.quarkus:quarkus-resteasy-reactive")
     implementation("io.quarkus:quarkus-resteasy-reactive-kotlin-serialization")
+    testImplementation("io.rest-assured:kotlin-extensions")
 
     implementation("io.quarkus:quarkus-hibernate-reactive-rest-data-panache")
     implementation("io.quarkus:quarkus-hibernate-validator")
@@ -36,10 +40,6 @@ dependencies {
     implementation("io.quarkus:quarkus-smallrye-reactive-messaging-kafka")
     implementation("io.quarkus:quarkus-apicurio-registry-avro")
     implementation("io.quarkus:quarkus-avro")
-
-    testImplementation("io.quarkus:quarkus-junit5")
-    testImplementation("io.rest-assured:kotlin-extensions")
-    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
 }
 
 group = "com.ovo.iops.boosthemis"
