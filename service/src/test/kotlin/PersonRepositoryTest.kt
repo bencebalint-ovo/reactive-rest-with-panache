@@ -1,3 +1,4 @@
+import io.kotest.matchers.shouldBe
 import io.quarkus.hibernate.reactive.panache.Panache
 import io.quarkus.test.junit.QuarkusTest
 import io.quarkus.test.vertx.RunOnVertxContext
@@ -19,9 +20,10 @@ class PersonRepositoryTest {
     @RunOnVertxContext
     fun `repository set up correctly`(asserter: UniAsserter) {
         TransactionalUniAsserterInterceptor(asserter).run {
-            execute(Supplier { repository.persist(Person().apply { name = "D. B. Testerson" }) })
-            assertEquals({ repository.count() }, 1)
-            execute(Supplier { repository.deleteAll() })
+            assertThat({ repository.findById(1) }, { person ->
+                person.id shouldBe 1
+                person.name shouldBe "Repo Testerson"
+            })
         }
     }
 

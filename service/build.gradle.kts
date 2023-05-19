@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     kotlin("plugin.allopen")
+    kotlin("plugin.serialization")
     id("io.quarkus")
 }
 

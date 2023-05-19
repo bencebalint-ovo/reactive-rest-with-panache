@@ -1,16 +1,11 @@
 quarkus:
   datasource:
-    jdbc: false
     db-kind: postgresql
-    reactive:
-  #    url: vertx-reactive:postgresql://localhost:5432/test
+    devservices:
+      port: 5432
+      volumes:
+        "/tmp/db": /var/lib/postgresql/data
+    jdbc: false
   hibernate-orm:
       database:
         generation: drop-and-create
-
-
-#    devservices:
-#      port: 5432
-#    reactive:
-#      url: vertx-reactive:postgresql://localhost:5432/mydatabase
-#    url: postgresql://localhost:5432/quarkus_test
