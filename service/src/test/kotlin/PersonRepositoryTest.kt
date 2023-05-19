@@ -1,4 +1,5 @@
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import io.quarkus.test.junit.QuarkusTest
 import io.quarkus.test.vertx.RunOnVertxContext
 import io.quarkus.test.vertx.UniAsserter
@@ -14,10 +15,15 @@ class PersonRepositoryTest {
 
     @Test
     @RunOnVertxContext
-    fun `repository set up correctly`(asserter: UniAsserter) = asserter.withTransaction {
-        assertThat({ repository.findById(1) }, { person ->
-            person.id shouldBe 1
-            person.name shouldBe "Repo Testerson"
-        })
+    fun `repository set up correctly`(asserter: UniAsserter) {
+        val expected = repository.createTestPerson(asserter, Person().apply { name = "Repo Testerson" })
+
+        asserter.withTransaction {
+            assertThat({ repository.findById(expected.id) }, { actual ->
+                actual shouldNotBe null
+                actual.id shouldBe expected.id
+                actual.name shouldBe "Repo Testerson"
+            })
+        }
     }
 }

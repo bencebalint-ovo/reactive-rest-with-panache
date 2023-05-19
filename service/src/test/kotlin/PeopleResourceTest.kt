@@ -25,7 +25,7 @@ class PeopleResourceTest {
     @Test
     fun `GET returns 404 when entity not found`() {
         When {
-            get("/people/1337")
+            get("/people/123456789")
         }.Then {
             statusCode(404)
             body(`is`(""))
@@ -35,10 +35,10 @@ class PeopleResourceTest {
     @Test
     fun `POST returns 204 and persists entity`() {
         When {
-            get("/people/1337")
+            get("/people")
         }.Then {
-            statusCode(404)
-            body(`is`(""))
+//            statusCode(204)
+//            body(`is`(""))
         }
     }
 

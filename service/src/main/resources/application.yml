@@ -7,5 +7,9 @@ quarkus:
         "/tmp/db": /var/lib/postgresql/data
     jdbc: false
   hibernate-orm:
-      database:
-        generation: drop-and-create
+    log:
+      sql: true
+      format-sql: true
+    database:
+      generation: drop-and-create
+
