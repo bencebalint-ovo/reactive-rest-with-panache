@@ -11,14 +11,13 @@ import kotlinx.serialization.Serializable
 class Person {
     @Id
     @GeneratedValue
-    @Suppress("unused")
     var id: Long? = null
 
     lateinit var name: String
 }
 
 @ApplicationScoped
-class PersonRepository: PanacheRepository<Person>
+class PersonRepository : PanacheRepository<Person>
 
 @Suppress("unused")
-interface PeopleResource: PanacheRepositoryResource<PersonRepository, Person, Long>
+interface PeopleResource : PanacheRepositoryResource<PersonRepository, Person, Long>

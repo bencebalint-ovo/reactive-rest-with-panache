@@ -10,10 +10,10 @@ import java.util.function.Supplier
 
 @Suppress("ReactiveStreamsUnusedPublisher")
 fun PersonRepository.createTestPerson(asserter: UniAsserter, person: Person) = asserter.withTransaction {
-    execute(Supplier {
-        persist(person)
-    })
-}.let { person }
+    execute(Supplier { persist(person) })
+}.let {
+    person
+}
 
 fun UniAsserter.withTransaction(block: UniAsserter.() -> Unit) = block(TransactionalUniAsserterInterceptor(this))
 
